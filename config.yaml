@@ -1,0 +1,52 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+
+proxies:
+  - name: 新加坡-yd3
+    type: vmess
+    server: yd3.ainivp.com
+    port: 33402
+    uuid: 9101afcd-026e-781f-1abc-b03efadf2311
+    alterId: 0
+    cipher: auto
+    tls: true
+    network: ws
+    ws-opts:
+      path: /ray
+
+  - name: 香港-yd3
+    type: vmess
+    server: yd3.ainivp.com
+    port: 33417
+    uuid: 9101afcd-025e-781f-1abc-b12efade2311
+    alterId: 0
+    cipher: auto
+    tls: true
+    network: ws
+    ws-opts:
+      path: /ray
+
+  - name: 美国-yd4
+    type: vmess
+    server: yd4.ainivp.com
+    port: 33405
+    uuid: 9101afcd-025e-781f-1abc-b12efade2311
+    alterId: 0
+    cipher: auto
+    tls: true
+    network: ws
+    ws-opts:
+      path: /ray
+
+proxy-groups:
+  - name: 节点选择
+    type: select
+    proxies:
+      - 新加坡-yd3
+      - 香港-yd3
+      - 美国-yd4
+
+rules:
+  - MATCH,节点选择
